@@ -6,10 +6,10 @@ function isObject(obj: Record<string, any>): boolean {
  * Deeply merges two given objects with the right one
  * having a priority during property assignment.
  */
-export function mergeRight(
+export function mergeRight<ReturnType extends Record<string, any>>(
   a: Record<string, any>,
   b: Record<string, any>,
-): Record<string, any> {
+): ReturnType {
   const result = Object.assign({}, a)
 
   Object.entries(b).forEach(([key, value]) => {
@@ -28,5 +28,5 @@ export function mergeRight(
     result[key] = value
   })
 
-  return result
+  return result as ReturnType
 }
